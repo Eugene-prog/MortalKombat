@@ -27,9 +27,7 @@ const player2 = {
 };
 
 function createPlayer(classPlayer, obj) {
-	const life = obj.hp;
-	const namePlayer = obj.name;
-	const img = obj.img;
+	const { hp: life, name: namePlayer, img } = obj;
 
 	const $player = document.createElement("div");
 	$player.classList.add(classPlayer);
