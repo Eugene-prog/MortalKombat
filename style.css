@@ -1,211 +1,287 @@
 @font-face {
-    font-family: 'Mortal Kombat 3';
-    src: url('./assets/fonts/MortalKombat3-Regular.eot');
-    src: url('./assets/fonts/MortalKombat3-Regular.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/MortalKombat3-Regular.woff2') format('woff2'),
-    url('./assets/fonts/MortalKombat3-Regular.woff') format('woff'),
-    url('./assets/fonts/MortalKombat3-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+	font-family: "Mortal Kombat 3";
+	src: url("./assets/fonts/MortalKombat3-Regular.eot");
+	src: url("./assets/fonts/MortalKombat3-Regular.eot?#iefix")
+			format("embedded-opentype"),
+		url("./assets/fonts/MortalKombat3-Regular.woff2") format("woff2"),
+		url("./assets/fonts/MortalKombat3-Regular.woff") format("woff"),
+		url("./assets/fonts/MortalKombat3-Regular.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
 }
-
 
 *,
 *:before,
 *:after {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-    background-color: #424542;
-    margin: 0;
-    padding: 0;
+	background-color: #424542;
+	margin: 0;
+	padding: 0;
 }
 
 .root {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    background: #424466;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	background: #424466;
 }
 
 .wall-left {
-    position: absolute;
-    width: 87px;
-    background: url(assets/wall-left.png);
-    height: 100vh;
-    background-size: contain;
-    background-repeat: no-repeat;
-    top: 0;
-    z-index: 100;
-    left: 50%;
-    transform: translate(-450px, 0px);
+	position: absolute;
+	width: 87px;
+	background: url(assets/wall-left.png);
+	height: 100vh;
+	background-size: contain;
+	background-repeat: no-repeat;
+	top: 0;
+	z-index: 100;
+	left: 50%;
+	transform: translate(-450px, 0px);
 }
 
 .wall-right {
-    position: absolute;
-    width: 87px;
-    background: url(./assets/wall-right.png);
-    height: 100vh;
-    background-size: contain;
-    background-repeat: no-repeat;
-    top: 0;
-    z-index: 100;
-    right: 50%;
-    transform: translate(450px, 0px);
+	position: absolute;
+	width: 87px;
+	background: url(./assets/wall-right.png);
+	height: 100vh;
+	background-size: contain;
+	background-repeat: no-repeat;
+	top: 0;
+	z-index: 100;
+	right: 50%;
+	transform: translate(450px, 0px);
 }
 
 .arenas {
-    width: 786px;
-    height: 70vh;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-    display: flex;
+	width: 786px;
+	height: 70vh;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	position: relative;
+	display: flex;
 }
 
 .arenas.arena1 {
-    background-image: url(./assets/scorpions-lair-arenas.png);
+	background-image: url(./assets/scorpions-lair-arenas.png);
 }
 
 .arenas.arena2 {
-    background-image: url(./assets/the-cave.png);
+	background-image: url(./assets/the-cave.png);
 }
 
 .arenas.arena3 {
-    background-image: url(./assets/jade-s-desert.png);
+	background-image: url(./assets/jade-s-desert.png);
 }
 
 .arenas.arena4 {
-    background-image: url(./assets/scislac-busorez.png);
+	background-image: url(./assets/scislac-busorez.png);
 }
 
 .arenas.arena5 {
-    background-image: url(./assets/waterfront.png);
+	background-image: url(./assets/waterfront.png);
 }
 
 .player1,
 .player2 {
-    width: 50%;
-    position: relative;
+	width: 50%;
+	position: relative;
 }
 
 .progressbar {
-    width: 295px;
-    border: 4px solid #f5d100;
-    position: absolute;
-    top: 59px;
-    height: 28px;
-    background-color: #cd0e03;
-    display: flex;
+	width: 295px;
+	border: 4px solid #f5d100;
+	position: absolute;
+	top: 59px;
+	height: 28px;
+	background-color: #cd0e03;
+	display: flex;
 }
 
 .player1 .progressbar {
-    left: 38px;
+	left: 38px;
 }
 
 .player2 .progressbar {
-    right: 38px;
-    flex-direction: row-reverse;
+	right: 38px;
+	flex-direction: row-reverse;
 }
 
 .extralife {
-    width: 90px;
-    border: 2px solid #f5d100;
-    position: absolute;
-    top: 85px;
-    height: 12px;
-    background-color: #cd0e03;
-    display: flex;
+	width: 90px;
+	border: 2px solid #f5d100;
+	position: absolute;
+	top: 85px;
+	height: 12px;
+	background-color: #cd0e03;
+	display: flex;
 }
 
 .player1 .extralife {
-    left: 38px;
+	left: 38px;
 }
 
 .player2 .extralife {
-    right: 38px;
-    flex-direction: row-reverse;
+	right: 38px;
+	flex-direction: row-reverse;
 }
 
 .extralife .life {
-    background: #00d600;
+	background: #00d600;
 }
 
 .life {
-    background-color: #0431f9;
-    height: 100%;
-    width: 90%;
+	background-color: #0431f9;
+	height: 100%;
+	width: 90%;
 }
 
 .name {
-    position: absolute;
-    font-family: 'Mortal Kombat 3';
-    font-size: 26px;
-    line-height: 20px;
-    letter-spacing: 2px;
-    color: #efefef;
-    top: 0;
+	position: absolute;
+	font-family: "Mortal Kombat 3";
+	font-size: 26px;
+	line-height: 20px;
+	letter-spacing: 2px;
+	color: #efefef;
+	top: 0;
+	text-transform: uppercase;
 }
 
 .player1 .name {
-    left: 5px;
+	left: 5px;
 }
 
 .player2 .name {
-    right: 5px;
+	right: 5px;
 }
 
 .chat {
-    width: 786px;
-    height: 30vh;
-    background: url(./assets/versus.png);
-    background-size: cover;
-    background-position: center;
-    border-top: 4px solid #f5d100;
+	width: 786px;
+	height: 30vh;
+	background: url(./assets/versus.png);
+	background-size: cover;
+	background-position: center;
+	border-top: 4px solid #f5d100;
 }
 
 .character {
-    position: absolute;
-    bottom: 20px;
-    width: 150px;
-    height: 268px;
+	position: absolute;
+	bottom: 20px;
+	width: 150px;
+	height: 268px;
 }
 
 .player1 .character {
-    left: 60px;
+	left: 60px;
 }
 
 .player2 .character {
-    right: 60px;
+	right: 60px;
 }
 
 .player2 .character img {
-    transform: scaleX(-1);
+	transform: scaleX(-1);
 }
 
 .character img {
-    height: 100%;
+	height: 100%;
 }
 
 .fight {
-    position: absolute;
-    z-index: 100;
-    top: 20%;
-    width: 300px;
+	position: absolute;
+	z-index: 100;
+	top: 20%;
+	width: 300px;
 }
 
 .fight img {
-    width: 100%;
+	width: 100%;
 }
 
+.control {
+	position: absolute;
+	width: 200px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+}
+
+.button {
+	display: block;
+	position: relative;
+	padding: 0 16px;
+	height: 36px;
+	color: white;
+	font-size: 18px;
+	text-transform: uppercase;
+	background-color: #f5d100;
+	border: none;
+	margin-top: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 4px;
+	box-sizing: border-box;
+	cursor: pointer;
+	font-family: "Mortal Kombat 3";
+	outline: none;
+}
+.button::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 4px;
+	left: 0;
+	background-color: #cd0e03;
+	border-radius: 4px;
+	z-index: -1;
+}
+.button:hover {
+	background-color: #f5d100;
+}
+.button:active {
+	top: 2px;
+}
+.button:active::after {
+	top: 1px;
+}
+
+.loseTitle {
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	font-size: 36px;
+	transform: translate(-50%, 0%);
+	text-transform: uppercase;
+	z-index: 1000;
+	color: white;
+	font-family: "Mortal Kombat 3";
+}
+
+.winTitle {
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	font-size: 36px;
+	transform: translate(-50%, 0%);
+	text-transform: uppercase;
+	z-index: 1000;
+	color: white;
+	font-family: "Mortal Kombat 3";
+}
