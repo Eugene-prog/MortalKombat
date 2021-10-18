@@ -69,15 +69,7 @@ function randomHP() {
 	return Math.floor(Math.random() * 20) + 1;
 }
 
-function changeHP(player) {
-	const $playerLife = document.querySelector(
-		".player" + player.player + " .life"
-	);
-	player.hp -= randomHP();
-	if (player.hp < 0) {
-		player.hp = 0;
-	}
-	$playerLife.style.width = player.hp + "%";
+function whoIsWin(player) {
 	if (player.hp <= 0) {
 		if (player.player === 1) {
 			$arenas.appendChild(playerWin(player2.name));
@@ -88,10 +80,22 @@ function changeHP(player) {
 	}
 }
 
+function changeHP(player) {
+	const $playerLife = document.querySelector(
+		".player" + player.player + " .life"
+	);
+	player.hp -= randomHP();
+	if (player.hp < 0) {
+		player.hp = 0;
+	}
+	$playerLife.style.width = player.hp + "%";
+}
+
 $randomButton.addEventListener("click", () => {
-	console.log("####: Click Random Buttton");
 	changeHP(player1);
 	changeHP(player2);
+	whoIsWin(player1);
+	whoIsWin(player2);
 });
 
 $arenas.appendChild(createPlayer(player1));
