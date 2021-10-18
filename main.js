@@ -10,6 +10,9 @@ const player1 = {
 	attack: function () {
 		console.log(`${player1.name}` + " Fight...");
 	},
+	changeHP: changeHP,
+	elHP: elHP,
+	renderHP: renderHP,
 };
 
 const player2 = {
@@ -21,6 +24,9 @@ const player2 = {
 	attack: function () {
 		console.log(`${player2.name}` + " Fight...");
 	},
+	changeHP: changeHP,
+	elHP: elHP,
+	renderHP: renderHP,
 };
 
 function createElement(tag, className) {
@@ -59,43 +65,64 @@ function playerLose(name) {
 	return $loseTitle;
 }
 
-function playerWin(name) {
+function playerWins(name) {
 	const $winTitle = createElement("div", "winTitle");
-	$winTitle.innerText = name + " wins";
+	if (name) {
+		$winTitle.innerText = name + " wins";
+	} else {
+		$winTitle.innerText = "draw";
+	}
 	return $winTitle;
 }
 
-function randomHP() {
-	return Math.floor(Math.random() * 20) + 1;
+function createReloadButton() {
+	const $reloadWrap = createElement("div", "reloadWrap");
+	const $reloadButton = createElement("button", "button");
+	$reloadButton.innerText = "Restart";
+	$reloadWrap.appendChild($reloadButton);
+	$reloadButton.addEventListener("click", () => {
+		window.location.reload();
+	});
+	$arenas.appendChild($reloadWrap);
 }
 
-function whoIsWin(player) {
-	if (player.hp <= 0) {
-		if (player.player === 1) {
-			$arenas.appendChild(playerWin(player2.name));
-		} else {
-			$arenas.appendChild(playerWin(player1.name));
-		}
-		$randomButton.disabled = true;
+function getRandom(num) {
+	return Math.floor(Math.random() * num) + 1;
+}
+
+function changeHP(changeValue) {
+	this.hp -= changeValue;
+	if (this.hp <= 0) {
+		this.hp = 0;
 	}
 }
 
-function changeHP(player) {
-	const $playerLife = document.querySelector(
-		".player" + player.player + " .life"
-	);
-	player.hp -= randomHP();
-	if (player.hp < 0) {
-		player.hp = 0;
-	}
-	$playerLife.style.width = player.hp + "%";
+function elHP() {
+	return document.querySelector(`.player${this.player} .life`);
+}
+
+function renderHP() {
+	let $hpBar = this.elHP();
+	$hpBar.style.width = `${this.hp}%`;
 }
 
 $randomButton.addEventListener("click", () => {
-	changeHP(player1);
-	changeHP(player2);
-	whoIsWin(player1);
-	whoIsWin(player2);
+	player1.changeHP(getRandom(20));
+	player1.renderHP();
+	player2.changeHP(getRandom(20));
+	player2.renderHP();
+
+	if (player1.hp === 0 || player2.hp === 0) {
+		$randomButton.disabled = true;
+		createReloadButton();
+	}
+	if (player1.hp === 0 && player1.hp < player2.hp) {
+		$arenas.appendChild(playerWins(player2.name));
+	} else if (player2.hp === 0 && player2.hp < player1.hp) {
+		$arenas.appendChild(playerWins(player1.name));
+	} else if (player1.hp === 0 && player1.hp === 0) {
+		$arenas.appendChild(playerWins());
+	}
 });
 
 $arenas.appendChild(createPlayer(player1));
