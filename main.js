@@ -1,5 +1,4 @@
 const $arenas = document.querySelector(".arenas");
-//const $randomButton = document.querySelector(".button");
 const $formFight = document.querySelector(".control");
 const $fightButton = document.querySelector(".button");
 
@@ -116,30 +115,7 @@ function renderHP() {
 	$hpBar.style.width = `${this.hp}%`;
 }
 
-// $randomButton.addEventListener("click", () => {
-// 	player1.changeHP(getRandom(20));
-// 	player1.renderHP();
-// 	player2.changeHP(getRandom(20));
-// 	player2.renderHP();
-
-// 	if (player1.hp === 0 || player2.hp === 0) {
-// 		$randomButton.disabled = true;
-// 		createReloadButton();
-// 	}
-// 	if (player1.hp === 0 && player1.hp < player2.hp) {
-// 		$arenas.appendChild(playerWins(player2.name));
-// 	} else if (player2.hp === 0 && player2.hp < player1.hp) {
-// 		$arenas.appendChild(playerWins(player1.name));
-// 	} else if (player1.hp === 0 && player1.hp === 0) {
-// 		$arenas.appendChild(playerWins());
-// 	}
-// });
-
 function whoIsWin() {
-	// if (player1.hp === 0 || player2.hp === 0) {
-	// 	$fightButton.disabled = true;
-	// 	createReloadButton();
-	// }
 	$fightButton.disabled = true;
 	createReloadButton();
 	if (player1.hp === 0 && player1.hp < player2.hp) {
@@ -150,15 +126,9 @@ function whoIsWin() {
 		$arenas.appendChild(playerWins());
 	}
 }
-
-$arenas.appendChild(createPlayer(player1));
-$arenas.appendChild(createPlayer(player2));
-
 function enemyAttack() {
 	const hit = ATTACK[getRandom(3) - 1];
 	const defence = ATTACK[getRandom(3) - 1];
-	// console.log("####: hit", hit);
-	// console.log("####: defence", defence);
 	return {
 		value: getRandom(HIT[hit]),
 		hit,
@@ -179,9 +149,7 @@ function getRoundResult(attack, enemy) {
 
 $formFight.addEventListener("submit", function (e) {
 	e.preventDefault();
-	//console.dir($formFight);
 	const enemy = enemyAttack();
-	// console.log("####: enemy", enemy);
 	const attack = {};
 	for (let item of $formFight) {
 		if (item.checked && item.name === "hit") {
@@ -197,5 +165,7 @@ $formFight.addEventListener("submit", function (e) {
 	if (player1.hp === 0 || player2.hp === 0) {
 		whoIsWin();
 	}
-	//console.log("####: a", attack);
 });
+
+$arenas.appendChild(createPlayer(player1));
+$arenas.appendChild(createPlayer(player2));
