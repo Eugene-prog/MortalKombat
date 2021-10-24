@@ -176,6 +176,10 @@ body {
 	background-size: cover;
 	background-position: center;
 	border-top: 4px solid #f5d100;
+	padding: 6px 40px;
+	overflow: scroll;
+	color: white;
+	font-family: Arial;
 }
 
 .character {
@@ -194,13 +198,15 @@ body {
 }
 
 .player2 .character img {
-	transform: scaleX(-1);
+	transform: scaleX(-1) translate(50%, 0);
 }
 
 .character img {
 	height: 100%;
 	position: absolute;
 	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, 0);
 }
 
 .fight {
@@ -273,19 +279,6 @@ body {
 	top: 4px;
 }
 
-.loseTitle {
-	position: absolute;
-	top: 22%;
-	left: 50%;
-	font-size: 36px;
-	transform: translate(-50%, 0%);
-	text-transform: uppercase;
-	z-index: 1000;
-	color: white;
-	font-family: "Mortal Kombat 3";
-	text-shadow: 2px 2px 2px #cd0e03;
-}
-
 .winTitle {
 	position: absolute;
 	top: 22%;
@@ -301,7 +294,7 @@ body {
 
 .reloadWrap {
 	position: absolute;
-	top: 55px;
+	top: 50px;
 	z-index: 1000;
 	left: 50%;
 	transform: translate(-50%, 0%);
