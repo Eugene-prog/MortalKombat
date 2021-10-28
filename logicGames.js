@@ -1,4 +1,4 @@
-import { player1, player2, $arenas, $formFight } from "../main.js";
+import { player1, player2, $arenas, $formFight } from "../game.js";
 import { getRandom } from "./utils.js";
 import { generateLogs } from "../logs.js";
 import { HIT, ATTACK } from "../config.js";
@@ -7,18 +7,22 @@ import { createReloadButton, createElement } from "./create.js";
 const $fightButton = document.querySelector(".button");
 
 const getRoundResult = (attack, enemy) => {
-	if (attack.hit !== enemy.defence) {
-		player2.changeHP(attack.value);
+	const { hit: hitEnemy, defence: defenceEnemy, value: valueEnemy } = enemy;
+	const { hit, defence, value } = attack;
+
+	if (hit !== defenceEnemy) {
+		player2.changeHP(value);
 		player2.renderHP();
-		generateLogs("hit", player1, player2, getHPLog(attack.value, player2.hp));
-	} else if (attack.hit === enemy.defence) {
+		generateLogs("hit", player1, player2, getHPLog(value, player2.hp));
+	} else if (hit === defenceEnemy) {
 		generateLogs("defence", player1, player2);
 	}
-	if (enemy.hit !== attack.defence) {
-		player1.changeHP(enemy.value);
+
+	if (hitEnemy !== defence) {
+		player1.changeHP(valueEnemy);
 		player1.renderHP();
-		generateLogs("hit", player2, player1, getHPLog(enemy.value, player1.hp));
-	} else if (enemy.hit === attack.defence) {
+		generateLogs("hit", player2, player1, getHPLog(valueEnemy, player1.hp));
+	} else if (hitEnemy === defence) {
 		generateLogs("defence", player2, player1);
 	}
 };
