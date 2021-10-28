@@ -1,4 +1,8 @@
-export const logs = {
+import { getTime, getRandom } from "./utils.js";
+
+const $chat = document.querySelector(".chat");
+
+const logs = {
 	start: [
 		"Часы показывали [time], когда [player1] и [player2] бросили вызов друг другу.",
 	],
@@ -39,3 +43,42 @@ export const logs = {
 	],
 	draw: ["Ничья - это тоже победа!"],
 };
+
+const generateLogs = (type, player1, player2, hpLog = "") => {
+	let text = "";
+	switch (type) {
+		case "start": {
+			text = logs[type][0]
+				.replace("[time]", getTime())
+				.replace("[player1]", player1.name)
+				.replace("[player2]", player2.name);
+			break;
+		}
+		case "hit": {
+			text = logs[type][getRandom(18) - 1]
+				.replace("[playerKick]", player1.name)
+				.replace("[playerDefence]", player2.name);
+			break;
+		}
+		case "defence": {
+			text = logs[type][getRandom(8) - 1]
+				.replace("[playerKick]", player1.name)
+				.replace("[playerDefence]", player2.name);
+			break;
+		}
+		case "end": {
+			text = logs[type][getRandom(3) - 1]
+				.replace("[playerWins]", player1.name)
+				.replace("[playerLose]", player2.name);
+			break;
+		}
+		case "draw": {
+			text = logs[type][0];
+			break;
+		}
+	}
+	const el = `<p>${getTime()} ${text} ${hpLog}</p>`;
+	$chat.insertAdjacentHTML("afterbegin", el);
+};
+
+export { generateLogs };

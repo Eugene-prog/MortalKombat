@@ -324,7 +324,7 @@ form:invalid button[class="button"]:active::after {
 .control {
 	position: absolute;
 	width: 200px;
-	top: 45%;
+	top: 40%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	display: flex;
