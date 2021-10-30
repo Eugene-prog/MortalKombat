@@ -7,6 +7,7 @@ import {
 	whoIsWin,
 	getRoundResult,
 } from "./logicGames.js";
+import { getRandom } from "./utils.js";
 
 export const $arenas = document.querySelector(".arenas");
 export const $formFight = document.querySelector(".control");
@@ -26,7 +27,6 @@ export const player2 = new Player({
 });
 
 class Game {
-	constructor(props) {}
 	start = () => {
 		$formFight.addEventListener("submit", function (e) {
 			e.preventDefault();
