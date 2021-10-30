@@ -1,6 +1,6 @@
-import { $arenas } from "../main.js";
+import { $arenas } from "../game.js";
 
-function createReloadButton() {
+const createReloadButton = () => {
 	const $reloadWrap = createElement("div", "reloadWrap");
 	const $reloadButton = createElement("button", "button");
 	$reloadButton.innerText = "Restart";
@@ -9,11 +9,14 @@ function createReloadButton() {
 		window.location.reload();
 	});
 	$arenas.appendChild($reloadWrap);
-}
+};
 
-function createPlayer(obj) {
-	const { hp: life, name: namePlayer, img, player: playerNumber } = obj;
-
+const createPlayer = ({
+	hp: life,
+	name: namePlayer,
+	img,
+	player: playerNumber,
+}) => {
 	const $player = createElement("div", `player${playerNumber}`);
 	const $progressbar = createElement("div", "progressbar");
 	const $life = createElement("div", "life");
@@ -31,7 +34,7 @@ function createPlayer(obj) {
 	$player.appendChild($character);
 	$character.appendChild($img);
 	return $player;
-}
+};
 
 const createElement = (tag, className) => {
 	const $tag = document.createElement(tag);
