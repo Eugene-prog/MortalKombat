@@ -1,14 +1,32 @@
 import { player1, player2, $arenas, $formFight } from "../game.js";
-import { getRandom } from "./utils.js";
 import { generateLogs } from "../logs.js";
-import { HIT, ATTACK } from "../config.js";
 import { createReloadButton, createElement } from "./create.js";
 
 const $fightButton = document.querySelector(".button");
 
-const getRoundResult = (attack, enemy) => {
-	const { hit: hitEnemy, defence: defenceEnemy, value: valueEnemy } = enemy;
-	const { hit, defence, value } = attack;
+const getFight = async ({ hit, defence } = playerAttack()) => {
+	const resultFight = fetch(
+		"http://reactmarathon-api.herokuapp.com/api/mk/player/fight",
+		{
+			method: "POST",
+			body: JSON.stringify({
+				hit,
+				defence,
+			}),
+		}
+	).then((res) => res.json());
+	return await resultFight;
+};
+
+const getRoundResult = async () => {
+	const result = await getFight();
+	const {
+		player1: { value, hit, defence },
+	} = result;
+
+	const {
+		player2: { value: valueEnemy, hit: hitEnemy, defence: defenceEnemy },
+	} = result;
 
 	if (hit !== defenceEnemy) {
 		player2.changeHP(value);
@@ -41,21 +59,10 @@ const whoIsWin = () => {
 	}
 };
 
-const enemyAttack = () => {
-	const hit = ATTACK[getRandom(3) - 1];
-	const defence = ATTACK[getRandom(3) - 1];
-	return {
-		value: getRandom(HIT[hit]),
-		hit,
-		defence,
-	};
-};
-
 const playerAttack = () => {
 	const attack = {};
 	for (let item of $formFight) {
 		if (item.checked && item.name === "hit") {
-			attack.value = getRandom(HIT[item.value]);
 			attack.hit = item.value;
 		}
 		if (item.checked && item.name === "defence") {
@@ -79,4 +86,4 @@ const playerWins = (name) => {
 
 const getHPLog = (attack, hp) => `-${attack} [${hp}/100]`;
 
-export { whoIsWin, enemyAttack, playerAttack, getRoundResult };
+export { whoIsWin, playerAttack, getRoundResult };
